@@ -1,62 +1,90 @@
-/* 
-    Default .btn
-    variant: default, outline, secondary, ghost, link
-    size: default, small, large, icon
-    disabled
-*/
-
-.btn{
-    font-family: inherit;
+.btn {
+	font-family: inherit;
+	background-color: var(--primary-color-400);
+	border: 1px solid rgba(27, 31, 35, 0.15);
+	border-radius: 0.5rem;
+	color: var(--neutral-color-100);
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	width: max-content;
+	font-size: 0.875rem;
+	font-weight: 600;
+	padding: 0.5rem 1rem;
+	text-align: center;
+	text-decoration: none;
+	transition: all 150ms ease-in-out;
 }
 
-
-/* .button-3 {
-  appearance: none;
-  background-color: #2ea44f;
-  border: 1px solid rgba(27, 31, 35, .15);
-  border-radius: 6px;
-  box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
-  display: inline-block;
-  font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 20px;
-  padding: 6px 16px;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  vertical-align: middle;
-  white-space: nowrap;
+.btn[data-variant='outline'] {
+	background-color: var(--neutral-color-100);
+	border: 1px solid var(--primary-color-400);
+	color: var(--primary-color-400);
 }
 
-.button-3:focus:not(:focus-visible):not(.focus-visible) {
-  box-shadow: none;
-  outline: none;
+.btn[data-variant='secondary'] {
+	--primary-hue: 251;
+	background-color: var(--secondary-color-400);
+	color: var(--neutral-color-100);
 }
 
-.button-3:hover {
-  background-color: #2c974b;
+.btn[data-variant='ghost'] {
+	background-color: var(--neutral-color-100);
+	border: none;
+	color: var(--primary-color-400);
 }
 
-.button-3:focus {
-  box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
-  outline: none;
+.btn:is(:hover, :focus-visible) {
+	background-color: var(--primary-color-500);
+	color: var(--neutral-color-100);
 }
 
-.button-3:disabled {
-  background-color: #94d3a2;
-  border-color: rgba(27, 31, 35, .1);
-  color: rgba(255, 255, 255, .8);
-  cursor: default;
+.btn:focus-visible {
+	outline: 2px solid var(--primary-color-500);
+	outline-offset: 2px;
 }
 
-.button-3:active {
-  background-color: #298e46;
-  box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
-} */
+.btn[data-variant='secondary']:is(:hover, :focus-visible) {
+	background-color: var(--secondary-color-500);
+	color: var(--neutral-color-100);
+}
+
+.btn[data-variant='ghost']:is(:hover, :focus-visible) {
+	background-color: transparent;
+	outline: 1px solid var(--primary-color-500);
+	color: var(--primary-color-500);
+}
+
+.btn[data-variant='secondary']:focus-visible {
+	outline: 2px solid var(--secondary-color-500);
+}
+
+.btn:active {
+	background-color: var(--primary-color-600);
+}
+
+.btn[data-variant='secondary']:active {
+	background-color: var(--secondary-color-600);
+}
+
+.btn:disabled {
+	background-color: var(--primary-color-100);
+	pointer-events: none;
+	user-select: none;
+}
+
+.btn[data-size='small'] {
+	font-size: 0.75rem;
+	padding: 0.25rem 0.75rem;
+}
+
+.btn[data-size='large'] {
+	font-size: 1.5rem;
+	padding: 0.5rem 1.25rem;
+}
+
+.btn[data-size='icon'] {
+	font-size: 1rem;
+	padding: 0.5rem 0.5rem;
+}

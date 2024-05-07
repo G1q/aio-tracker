@@ -1,3 +1,20 @@
-html{
-    font-family: system-ui, sanse-serif;
+:root {
+	--primary-hue: 137;
+	--secondary-hue: 251;
+
+	--primary-color-100: hsl(var(--primary-hue), 42%, 70%);
+	--primary-color-400: hsl(var(--primary-hue), 56%, 41%);
+	--primary-color-500: hsl(var(--primary-hue), 55%, 38%);
+	--primary-color-600: hsl(var(--primary-hue), 55%, 36%);
+
+	--secondary-color-100: hsl(var(--secondary-hue), 42%, 70%);
+	--secondary-color-400: hsl(var(--secondary-hue), 56%, 41%);
+	--secondary-color-500: hsl(var(--secondary-hue), 55%, 38%);
+	--secondary-color-600: hsl(var(--secondary-hue), 55%, 36%);
+
+	--neutral-color-100: hsl(0, 100%, 100%);
+}
+
+html {
+	font-family: system-ui, sans-serif;
 }

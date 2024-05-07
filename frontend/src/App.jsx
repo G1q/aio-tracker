@@ -1,5 +1,4 @@
 import { Routes, Route } from 'react-router-dom';
-import Button from './components/ui/Button/Button';
 
 function App() {
 	return (
@@ -9,10 +8,6 @@ function App() {
 				element={
 					<>
 						<h1>Homepage</h1>
-						<Button
-							text="Apasa"
-							variant="primary"
-						/>
 					</>
 				}
 			/>
