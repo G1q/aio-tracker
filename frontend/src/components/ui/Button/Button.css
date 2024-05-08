@@ -14,7 +14,7 @@
 	padding: 0.5rem 1rem;
 	text-align: center;
 	text-decoration: none;
-	transition: all 150ms ease-in-out;
+	/* transition: all 150ms ease-in-out; */
 }
 
 .btn[data-variant='outline'] {
@@ -31,7 +31,7 @@
 
 .btn[data-variant='ghost'] {
 	background-color: var(--neutral-color-100);
-	border: none;
+	border-color: transparent;
 	color: var(--primary-color-400);
 }
 

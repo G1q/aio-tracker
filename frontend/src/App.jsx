@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import Measurements from './pages/measurements/Measurements';
 
 function App() {
 	return (
@@ -12,8 +13,8 @@ function App() {
 				}
 			/>
 			<Route
-				path="/about"
-				element={<h1>About page</h1>}
+				path="/measurements"
+				element={<Measurements />}
 			/>
 			<Route
 				path="*"
