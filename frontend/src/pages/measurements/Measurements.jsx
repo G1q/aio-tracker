@@ -49,7 +49,7 @@ const Measurements = () => {
             <Tabs tabs={[
                 {
                     label: 'Measurements',
-                    element: <Table headers={['Date', 'Name', 'Category', 'Value', 'Unit', 'Ideal value', 'Edit', 'Delete']}>
+                    element: <Table headers={['Date', 'Name', 'Category', 'Value', 'Unit', 'Ideal value', 'Edit', 'Delete']} search>
                         {MEASUREMENTS_DATA.map(data => <tr key={data.id}>
                             <td>{data.date}</td>
                             <td>{data.name}</td>
@@ -64,7 +64,7 @@ const Measurements = () => {
                 },
                 {
                     label: 'Custom measurements',
-                    element: <Table headers={['Date', 'Name', 'Value', 'Unit', 'Edit', 'Delete']}>
+                    element: <Table headers={['Date', 'Name', 'Value', 'Unit', 'Edit', 'Delete']} search>
                         {MEASUREMENTS_DATA.map(data => <tr key={data.id}>
                             <td>{data.date}</td>
                             <td>{data.name}</td>
