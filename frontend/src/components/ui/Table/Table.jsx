@@ -1,13 +1,17 @@
 import './Table.css'
 
-const Table = ({ headers, children }) => {
+const Table = ({ headers, children, search, filters }) => {
     return (
         <div className="table-wrapper">
             <div className="table-actions">
-                <search>
-                    <input type="search" name="search" id="search" />
-                </search>
-                <p>Filter component</p>
+                {
+                    search && (<search>
+                        <input type="search" name="search" id="search" />
+                    </search>)
+                }
+                {
+                    filters && (<p>Filter component</p>)
+                }
             </div>
 
             <table>
