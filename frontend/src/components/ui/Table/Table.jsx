@@ -5,9 +5,7 @@ const Table = ({ headers, children, search, filters }) => {
         <div className="table-wrapper">
             <div className="table-actions">
                 {
-                    search && (<search>
-                        <input type="search" name="search" id="search" />
-                    </search>)
+                    search && (<p>Search component</p>)
                 }
                 {
                     filters && (<p>Filter component</p>)
