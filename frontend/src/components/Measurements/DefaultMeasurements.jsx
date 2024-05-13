@@ -50,6 +50,7 @@ const DefaultMeasurements = () => {
                     <td><Button variant="icon" icon={<RiDeleteBin6Line />} style={{ padding: 0, backgroundColor: 'transparent', color: 'crimson' }} onClick={() => deleteMeasurement(data.id)} /></td>
                 </tr>)}
             </Table>
+
             <p>Tips</p>
         </>
     )

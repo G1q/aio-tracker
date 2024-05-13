@@ -8,9 +8,9 @@
 import './Button.css'
 import clsx from 'clsx'
 
-const Button = ({ onClick, text, variant, size, icon, iconPosition = 'before', disabled, className, ...rest }) => {
+const Button = ({ onClick, text, variant, size, icon, iconPosition = 'before', disabled, dialogId, className, ...rest }) => {
   return (
-    <button type="button" className={clsx('btn', className)} onClick={onClick} disabled={disabled} data-variant={variant} data-size={size} {...rest}>
+    <button type="button" className={clsx('btn', className)} onClick={dialogId ? () => { document.querySelector(`#${dialogId}`).showModal() } : onClick} disabled={disabled} data-variant={variant} data-size={size} {...rest}>
       {iconPosition === 'before' && icon}
       {size !== 'icon' && text}
       {iconPosition === 'after' && icon}
