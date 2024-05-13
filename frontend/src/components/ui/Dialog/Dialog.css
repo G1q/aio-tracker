@@ -9,7 +9,7 @@ dialog::backdrop {
 	background-color: rgba(0, 0, 0, 0.75);
 }
 
-.close-dialog {
+.dialog__close-btn {
 	color: #dc143c;
 	position: absolute;
 	top: 1rem;
@@ -21,7 +21,7 @@ dialog::backdrop {
 	font-size: 1rem;
 }
 
-.close-dialog:is(:hover, :focus-visible) {
+.dialog__close-btn:is(:hover, :focus-visible) {
 	color: #9d0e2b;
 }
 
