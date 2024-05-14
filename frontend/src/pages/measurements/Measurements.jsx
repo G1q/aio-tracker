@@ -4,8 +4,8 @@ import { IoAddCircleOutline } from "react-icons/io5";
 import Tabs from '../../components/ui/Tabs/Tabs';
 import DefaultMeasurements from '../../components/Measurements/DefaultMeasurements';
 import CustomMeasurements from '../../components/Measurements/CustomMeasurements';
-import Dialog from '../../components/ui/Dialog/Dialog';
 import AddNewMeasurement from '../../components/Measurements/AddNewMeasurement';
+import CreateCustomMeasurement from '../../components/Measurements/CreateCustomMeasurement';
 
 const Measurements = () => {
 
@@ -13,8 +13,8 @@ const Measurements = () => {
         <>
             <section>
                 <div className="action-btns">
-                    <Button text="Add new measurement" icon={<IoAddCircleOutline size={18} />} dialogId="add-new-dialog" />
-                    <Button text="Create custom measurement" icon={<IoAddCircleOutline size={18} />} dialogId="dial2" />
+                    <Button text="Add new measurement" icon={<IoAddCircleOutline size={18} />} dialogId="add-new-measurement" />
+                    <Button text="Create custom measurement" icon={<IoAddCircleOutline size={18} />} dialogId="create-custom-measurement" />
                 </div>
 
                 <Tabs tabs={[
@@ -29,9 +29,8 @@ const Measurements = () => {
                     { label: 'Charts', element: 'Charts element' }]} />
             </section>
 
-            <AddNewMeasurement id="add-new-dialog" />
-            <Dialog id="dial2" >Alt Test</Dialog>
-
+            <AddNewMeasurement id="add-new-measurement" />
+            <CreateCustomMeasurement id="create-custom-measurement" />
         </>
     )
 }

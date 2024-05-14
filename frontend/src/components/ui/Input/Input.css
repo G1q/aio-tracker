@@ -1,0 +1,13 @@
+input {
+	font-family: inherit;
+	font-size: 1rem;
+	flex: 1;
+	min-width: fit-content;
+}
+
+.input__group {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	flex: 1;
+}

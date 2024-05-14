@@ -6,7 +6,6 @@ const MEASUREMENTS_DATA = [
     {
         id: '1',
         name: 'Weight',
-        category: 'Body',
         date: '08-05-2024',
         value: '107.9',
         unit: 'kg',
@@ -15,7 +14,6 @@ const MEASUREMENTS_DATA = [
     {
         id: '2',
         name: 'Height',
-        category: 'Body',
         date: '06-05-2024',
         value: '171',
         unit: 'cm'
@@ -23,7 +21,6 @@ const MEASUREMENTS_DATA = [
     {
         id: '3',
         name: 'Waist circumference',
-        category: 'Body',
         date: '08-05-2024',
         value: '105',
         unit: 'cm',
@@ -38,11 +35,10 @@ const DefaultMeasurements = () => {
 
     return (
         <>
-            <Table headers={['Date', 'Name', 'Category', 'Value', 'Unit', 'Ideal value', 'Edit', 'Delete']} search >
+            <Table headers={['Date', 'Name', 'Value', 'Unit', 'Ideal value', 'Edit', 'Delete']} search >
                 {MEASUREMENTS_DATA.map(data => <tr key={data.id}>
                     <td>{data.date}</td>
                     <td>{data.name}</td>
-                    <td>{data?.category}</td>
                     <td>{data.value}</td>
                     <td>{data.unit}</td>
                     <td>{data?.ideal}</td>
