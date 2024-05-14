@@ -18,6 +18,7 @@ const measurementCategorySchema = new Schema(
 				},
 				multiplier: {
 					type: Number,
+					default: 1,
 				},
 			},
 		],
