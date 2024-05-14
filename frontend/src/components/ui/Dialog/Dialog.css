@@ -3,6 +3,7 @@ dialog {
 	padding: 1rem;
 	border: none;
 	border-radius: 0.5rem;
+	max-width: 500px;
 }
 
 dialog::backdrop {
