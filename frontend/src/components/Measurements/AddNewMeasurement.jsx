@@ -10,32 +10,34 @@ const CATEGORIES = [
     {
         id: 1,
         name: "Weight",
+        description: 'Weight is used for ...',
         units: [
             {
                 name: "kg",
-                multiplicator: 1
+                multiplier: 1
             },
             {
                 name: 'lbs',
-                multiplicator: 0.453
+                multiplier: 0.453
             },
             {
                 name: 'st',
-                multiplicator: 6.35
+                multiplier: 6.35
             }
         ]
     },
     {
         id: 2,
         name: "Height",
+        description: 'Height is used for lorem ipsum ceva mai lung si putin mai descriptiv decat 2-3 cuvinte aruncate aiurea',
         units: [
             {
                 name: "cm",
-                multiplicator: 1
+                multiplier: 1
             },
             {
                 name: 'ft',
-                multiplicator: 30.48
+                multiplier: 30.48
             }
         ]
     },
@@ -45,7 +47,7 @@ const CATEGORIES = [
         units: [
             {
                 name: "ml/kg/min",
-                multiplicator: 1
+                multiplier: 1
             }
         ]
     }
@@ -82,6 +84,9 @@ const AddNewMeasurement = ({ id }) => {
     return (
         <Dialog id={id} title="Add new measurement">
             <Form sendFormText="Add new measurement" onSend={sendForm}>
+                {
+                    category && <p >{CATEGORIES.filter(item => item.name === category)[0].description}</p>
+                }
                 <DatePicker label="Select date" onChange={(e) => setDate(e.target.value)} />
                 <Select label="Measurement" defaultText="Please select category" values={CATEGORIES.map(category => category.name)} onChange={changeCategory} />
                 <div className="form__flex-group">
@@ -90,7 +95,7 @@ const AddNewMeasurement = ({ id }) => {
                         category && <Select label="Unit" defaultText="Please select unit" values={CATEGORIES.filter(item => item.name === category)[0].units.map(unit => unit.name)} onChange={(e) => setUnit(e.target.value)} />
                     }
                 </div>
-                {/* Set multiplicator */}
+                {/* Set multiplier */}
                 <Input type="time" defaultValue={new Date().toLocaleTimeString().slice(0, 5)} onChange={(e) => setTime(e.target.value)} />
             </Form>
         </Dialog>
