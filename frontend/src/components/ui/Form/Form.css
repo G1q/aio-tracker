@@ -1,0 +1,18 @@
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.form__flex-group {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 1rem;
+}
+
+.form button {
+	width: 100%;
+	justify-content: center;
+	margin-top: 1rem;
+}
