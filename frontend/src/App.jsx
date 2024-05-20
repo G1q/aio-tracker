@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import Measurements from './pages/measurements/Measurements';
+import Water from './pages/water/Water';
 
 function App() {
 	return (
@@ -15,6 +16,10 @@ function App() {
 			<Route
 				path="/measurements"
 				element={<Measurements />}
+			/>
+			<Route
+				path="/water"
+				element={<Water />}
 			/>
 			<Route
 				path="*"
