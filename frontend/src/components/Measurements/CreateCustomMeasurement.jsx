@@ -2,6 +2,7 @@ import { useState } from "react"
 import Dialog from "../ui/Dialog/Dialog"
 import Form from "../ui/Form/Form"
 import Input from "../ui/Input/Input"
+import axios from "axios"
 
 const CreateCustomMeasurement = ({ id }) => {
     const [category, setCategory] = useState('')
@@ -14,9 +15,15 @@ const CreateCustomMeasurement = ({ id }) => {
 
         //TODO: Reset values
 
+        await axios.post(`http://localhost:3005/api/v1/measurementCategories`, {
+            name: category,
+            type: "custom",
+            units: [{ name: unit }]
+        })
+
         document.querySelector(`#${id}`).close()
 
-        console.log({ id: Math.random(), name: category, units: [{ name: unit }] })
+        // console.log({ id: Math.random(), name: category, units: [{ name: unit }] })
     }
 
     return (

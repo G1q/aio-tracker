@@ -1,6 +1,8 @@
 import Table from '../ui/Table/Table'
 import Button from '../ui/Button/Button'
 import { RiDeleteBin6Line } from 'react-icons/ri'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 const MEASUREMENTS_DATA = [
     {
@@ -29,6 +31,22 @@ const MEASUREMENTS_DATA = [
 ]
 
 const DefaultMeasurements = () => {
+    const [measurements, setMeasurements] = useState([])
+
+    // TODO: add params for default type
+    useEffect(() => {
+        const getMeasurements = async () => {
+            try {
+                const response = await axios.get('http://localhost:3005/api/v1/measurements')
+                setMeasurements(response.data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        getMeasurements()
+    }, [])
+
+
     const deleteMeasurement = async (id) => {
         console.log(`Delete item with id ${id}`)
     }
@@ -36,9 +54,9 @@ const DefaultMeasurements = () => {
     return (
         <>
             <Table headers={['Date', 'Name', 'Value', 'Unit', 'Ideal value', 'Edit', 'Delete']} search >
-                {MEASUREMENTS_DATA.map(data => <tr key={data.id}>
+                {measurements.map(data => <tr key={data._id}>
                     <td>{data.date}</td>
-                    <td>{data.name}</td>
+                    <td>{data.category}</td>
                     <td>{data.value}</td>
                     <td>{data.unit}</td>
                     <td>{data?.ideal}</td>

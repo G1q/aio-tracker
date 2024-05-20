@@ -10,6 +10,10 @@ const measurementEntrySchema = new mongoose.Schema(
 			type: String,
 			required: true,
 		},
+		type: {
+			type: String,
+			enum: ['default', 'custom'],
+		},
 		category: {
 			type: String,
 			required: true,
@@ -23,7 +27,6 @@ const measurementEntrySchema = new mongoose.Schema(
 		createdBy: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'User',
-			required: true,
 		},
 	},
 	{
@@ -31,6 +34,4 @@ const measurementEntrySchema = new mongoose.Schema(
 	}
 )
 
-const MeasurementEntry = mongoose.model('MeasurementEntry', measurementEntrySchema)
-
-module.exports = MeasurementEntry
+export const MeasurementEntry = mongoose.model('MeasurementEntry', measurementEntrySchema)
