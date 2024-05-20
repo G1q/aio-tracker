@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const measurementCategorySchema = new Schema(
+const measurementCategorySchema = new mongoose.Schema(
 	{
 		name: {
 			type: String,
@@ -36,6 +36,4 @@ const measurementCategorySchema = new Schema(
 	}
 )
 
-const MeasurementCategory = mongoose.model('MeasurementCategory', measurementCategorySchema)
-
-module.exports = MeasurementCategory
+export const MeasurementCategory = mongoose.model('MeasurementCategory', measurementCategorySchema)
