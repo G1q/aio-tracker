@@ -4,32 +4,6 @@ import { RiDeleteBin6Line } from 'react-icons/ri'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 
-const MEASUREMENTS_DATA = [
-    {
-        id: '1',
-        name: 'Weight',
-        date: '08-05-2024',
-        value: '107.9',
-        unit: 'kg',
-        ideal: '80'
-    },
-    {
-        id: '2',
-        name: 'Height',
-        date: '06-05-2024',
-        value: '171',
-        unit: 'cm'
-    },
-    {
-        id: '3',
-        name: 'Waist circumference',
-        date: '08-05-2024',
-        value: '105',
-        unit: 'cm',
-        ideal: '90'
-    }
-]
-
 const DefaultMeasurements = () => {
     const [measurements, setMeasurements] = useState([])
 
