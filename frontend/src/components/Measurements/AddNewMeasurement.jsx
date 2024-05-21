@@ -4,7 +4,7 @@ import Form from "../ui/Form/Form"
 import Select from "../ui/Select/Select"
 import Input from "../ui/Input/Input"
 import DatePicker from "../ui/DatePicker/DatePicker"
-import { formatTodayDate } from "../../utils/formatDates"
+import { formatNowTime, formatTodayDate } from "../../utils/formatDates"
 import axios from "axios"
 
 const AddNewMeasurement = ({ id }) => {
@@ -63,7 +63,7 @@ const AddNewMeasurement = ({ id }) => {
                     }
                 </div>
                 {/* Set multiplier */}
-                <Input type="time" defaultValue={new Date().toLocaleTimeString().slice(0, 5)} onChange={(e) => setTime(e.target.value)} />
+                <Input type="time" defaultValue={formatNowTime().slice(0, 5)} onChange={(e) => setTime(e.target.value)} />
             </Form>
         </Dialog>
     )

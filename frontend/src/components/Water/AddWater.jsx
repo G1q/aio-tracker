@@ -3,7 +3,7 @@ import Dialog from "../ui/Dialog/Dialog"
 import Form from "../ui/Form/Form"
 import Input from "../ui/Input/Input"
 import DatePicker from "../ui/DatePicker/DatePicker"
-import { formatTodayDate } from "../../utils/formatDates"
+import { formatTodayDate, formatNowTime } from "../../utils/formatDates"
 import axios from "axios"
 
 
@@ -28,7 +28,7 @@ const AddWater = ({ id }) => {
             <Form sendFormText="Add water" onSend={sendForm}>
                 <DatePicker label="Select date" onChange={(e) => setDate(e.target.value)} />
                 <Input type="number" label="Quantity (ml)" onChange={(e) => setQuantity(e.target.value)} />
-                <Input label="Select time" type="time" defaultValue={new Date().toLocaleTimeString().slice(0, 5)} onChange={(e) => setTime(e.target.value)} />
+                <Input label="Select time" type="time" defaultValue={formatNowTime().slice(0, 5)} onChange={(e) => setTime(e.target.value)} />
             </Form>
         </Dialog>
     )
