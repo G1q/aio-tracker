@@ -6,6 +6,7 @@ import cors from 'cors'
 // Import routes
 import measurementCategoryRoutes from './routes/measurementCategory.routes.js'
 import measurementEntryRoutes from './routes/measurementEntry.routes.js'
+import waterRoutes from './routes/water.routes.js'
 
 const app = express()
 app.use(cors())
@@ -19,6 +20,7 @@ mongoose
 // Middlewares
 app.use('/api/v1/measurementCategories', measurementCategoryRoutes)
 app.use('/api/v1/measurements', measurementEntryRoutes)
+app.use('/api/v1/water', waterRoutes)
 
 app.listen(process.env.API_PORT, () => {
 	console.log(`Server is running on port ${process.env.API_PORT}`)
