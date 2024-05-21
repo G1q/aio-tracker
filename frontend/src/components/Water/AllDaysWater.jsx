@@ -1,24 +1,23 @@
 import Table from '../ui/Table/Table';
 import Button from '../ui/Button/Button';
 import { RiDeleteBin6Line } from 'react-icons/ri';
-import TodayStats from './TodayStats';
 
 const WATER_DATA = [
 	{
 		id: '1',
-		date: '17-05-2024',
+		date: '20-05-2024',
 		time: '8:30',
 		quantity: '300',
 	},
 	{
 		id: '2',
-		date: '17-05-2024',
+		date: '19-05-2024',
 		time: '10:30',
 		quantity: '400',
 	},
 	{
 		id: '3',
-		date: '17-05-2024',
+		date: '18-05-2024',
 		time: '12:15',
 		quantity: '200',
 	},
@@ -37,8 +36,6 @@ const AllDaysWater = () => {
 
 	return (
 		<>
-			<TodayStats />
-
 			<Table headers={['Date', 'Quantity', 'Edit', 'Delete']}>
 				{WATER_DATA.map((data) => (
 					<tr key={data.id}>
