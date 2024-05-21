@@ -27,7 +27,7 @@ const DefaultMeasurements = () => {
 
     return (
         <>
-            <Table headers={['Date', 'Name', 'Value', 'Unit', 'Ideal value', 'Edit', 'Delete']} search >
+            <Table headers={['Date', 'Name', 'Value', 'Unit', 'Ideal value', 'Edit', 'Delete']} >
                 {measurements.map(data => <tr key={data._id}>
                     <td>{data.date}</td>
                     <td>{data.category}</td>
@@ -35,7 +35,7 @@ const DefaultMeasurements = () => {
                     <td>{data.unit}</td>
                     <td>{data?.ideal}</td>
                     <td>Edit</td>
-                    <td><Button variant="icon" icon={<RiDeleteBin6Line />} style={{ padding: 0, backgroundColor: 'transparent', color: 'crimson' }} onClick={() => deleteMeasurement(data.id)} /></td>
+                    <td><Button variant="icon" icon={<RiDeleteBin6Line />} style={{ padding: 0, backgroundColor: 'transparent', color: 'crimson' }} onClick={() => deleteMeasurement(data._id)} /></td>
                 </tr>)}
             </Table>
 
