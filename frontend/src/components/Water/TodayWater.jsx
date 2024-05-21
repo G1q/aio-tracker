@@ -9,31 +9,30 @@ const TodayWater = () => {
     const [waterEntries, setWaterEntries] = useState([])
 
     useEffect(() => {
-        const getWaterEntries = async () => {
-            try {
-                const response = await axios.get(`http://localhost:3005/api/v1/water`)
-                // if (!response.data) throw new Error('No data!')
-
-                setWaterEntries(response.data)
-
-            } catch (error) {
-                console.log(error)
-            }
-        }
-
         getWaterEntries()
     }, [])
 
-    const deleteWaterEntry = async (id) => {
-        console.log(`Delete item with id ${id}`)
+    const getWaterEntries = async () => {
+        try {
+            const response = await axios.get(`http://localhost:3005/api/v1/water`)
+            setWaterEntries(response.data)
+
+        } catch (error) {
+            console.log(error)
+        }
     }
+
+    const deleteWaterEntry = async (id) => {
+        await axios.delete(`http://localhost:3005/api/v1/water/${id}`)
+        getWaterEntries()
+    };
 
     return (
         <>
             <TodayStats />
 
             {
-                waterEntries.length !== 0 && <Table headers={['Time', 'Quantity', 'Edit', 'Delete']} >
+                waterEntries.length > 0 && <Table headers={['Time', 'Quantity', 'Edit', 'Delete']} >
                     {waterEntries.map(data => <tr key={data._id}>
                         <td>{data.time}</td>
                         <td>{`${data.quantity} ml`}</td>

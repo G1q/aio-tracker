@@ -5,5 +5,5 @@ export const formatTodayDate = () => {
 
 export const formatNowTime = () => {
 	const today = new Date()
-	return `${today.g}`
+	return `${today.getHours().toString().padStart(2, 0)}:${today.getMinutes().toString().padStart(2, 0)}`
 }
