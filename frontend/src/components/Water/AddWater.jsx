@@ -4,29 +4,30 @@ import Form from "../ui/Form/Form"
 import Input from "../ui/Input/Input"
 import DatePicker from "../ui/DatePicker/DatePicker"
 import { formatTodayDate } from "../../utils/formatDates"
+import axios from "axios"
 
 
 const AddWater = ({ id }) => {
-    const [value, setValue] = useState(null)
+    const [quantity, setQuantity] = useState(null)
     const [date, setDate] = useState(formatTodayDate())
     const [time, setTime] = useState(new Date().toLocaleTimeString().slice(0, 5))
 
     const sendForm = async (e) => {
         e.preventDefault()
-        if (!value) return console.error('Error: Value is not added!')
+        if (!quantity) return console.error('Error: Quantity is not added!')
 
         //TODO: Reset values
 
-        document.querySelector(`#${id}`).close()
+        await axios.post(`http://localhost:3005/api/v1/water`, { quantity, date, time })  // TODO: get user id
 
-        console.log({value, date, time})
+        document.querySelector(`#${id}`).close()
     }
 
     return (
         <Dialog id={id} title="Add water">
             <Form sendFormText="Add water" onSend={sendForm}>
                 <DatePicker label="Select date" onChange={(e) => setDate(e.target.value)} />
-                <Input type="number" label="Value (ml)" onChange={(e) => setValue(e.target.value)} />
+                <Input type="number" label="Quantity (ml)" onChange={(e) => setQuantity(e.target.value)} />
                 <Input label="Select time" type="time" defaultValue={new Date().toLocaleTimeString().slice(0, 5)} onChange={(e) => setTime(e.target.value)} />
             </Form>
         </Dialog>
