@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 
 // Import routes
+import userRoutes from './routes/user.routes.js';
 import measurementCategoryRoutes from './routes/measurementCategory.routes.js';
 import measurementEntryRoutes from './routes/measurementEntry.routes.js';
 import waterRoutes from './routes/water.routes.js';
@@ -18,6 +19,7 @@ mongoose
 	.catch((err) => console.log(err));
 
 // Middlewares
+app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/measurementCategories', measurementCategoryRoutes);
 app.use('/api/v1/measurements', measurementEntryRoutes);
 app.use('/api/v1/water', waterRoutes);
