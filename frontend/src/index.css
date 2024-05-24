@@ -13,8 +13,37 @@
 	--secondary-color-600: hsl(var(--secondary-hue), 55%, 36%);
 
 	--neutral-color-100: hsl(0, 100%, 100%);
+
+	--max-container-width: 1200px;
 }
 
 html {
 	font-family: system-ui, sans-serif;
+}
+
+body {
+	margin: 0;
+}
+
+#root {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+header {
+	text-align: center;
+	padding: 1rem;
+	box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.15);
+}
+
+main {
+	flex: 1;
+	padding-inline: 1rem;
+}
+
+.container {
+	max-width: var(--max-container-width);
+	margin-inline: auto;
+	padding-block: 1rem;
 }
