@@ -1,15 +1,21 @@
 import { useState } from 'react'
-import { TextField, Button, Container, Typography, Box, InputAdornment, IconButton } from '@mui/material'
+import { TextField, Button, Container, Typography, Box, InputAdornment, IconButton, FormGroup, Checkbox, FormControlLabel } from '@mui/material'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { Link } from 'react-router-dom'
 
-const LoginForm = () => {
+const RegisterForm = () => {
     const [formData, setFormData] = useState({
+        firstname: '',
+        lastname: '',
         email: '',
-        password: '',
+        password: ''
     })
 
+    const [terms, setTerms] = useState(false)
+
     const [errors, setErrors] = useState({
+        firstname: false,
+        lastname: false,
         email: false,
         password: false
     })
@@ -46,8 +52,9 @@ const LoginForm = () => {
         e.preventDefault()
 
         if (errors.email || errors.password) return
+        if (!terms) return
 
-        // Aici poți adăuga logica pentru trimiterea datelor formularului
+        // TODO: send form data to server
         console.log(formData)
     }
 
@@ -56,16 +63,52 @@ const LoginForm = () => {
     };
 
     return (
-        <Container maxWidth="xs">
+        <Container maxWidth="sm">
             <Box sx={{ my: 4, p: 4, borderRadius: '10px', backgroundColor: 'white', color: '#131313', boxShadow: '0 0 0 2px rgba(0,0,0,.15)' }}>
                 <Typography
                     variant="h4"
                     component="h1"
                     gutterBottom
                 >
-                    Welcome back
+                    Create your FREE account
                 </Typography>
                 <form onSubmit={handleSubmit}>
+                    <TextField
+                        label="Firstname"
+                        name="firstname"
+                        type="text"
+                        variant="outlined"
+                        fullWidth
+                        margin="normal"
+                        required
+                        value={formData.firstname}
+                        onChange={handleChange}
+                        helperText={errors.firstname}
+                        FormHelperTextProps={{
+                            variant: 'standard',
+                            sx: {
+                                color: errors.firstname ? 'error.main' : 'text.secondary',
+                            },
+                        }}
+                    />
+                    <TextField
+                        label="Lastname"
+                        name="lastname"
+                        type="text"
+                        variant="outlined"
+                        fullWidth
+                        margin="normal"
+                        required
+                        value={formData.lastname}
+                        onChange={handleChange}
+                        helperText={errors.lastname}
+                        FormHelperTextProps={{
+                            variant: 'standard',
+                            sx: {
+                                color: errors.lastname ? 'error.main' : 'text.secondary',
+                            },
+                        }}
+                    />
                     <TextField
                         label="Email"
                         name="email"
@@ -115,6 +158,9 @@ const LoginForm = () => {
                             )
                         }}
                     />
+                    <FormGroup>
+                        <FormControlLabel required control={<Checkbox onChange={() => setTerms(!terms)} />} label="I have read and accepted the terms and conditions" />
+                    </FormGroup>
                     <Button
                         type="submit"
                         variant="contained"
@@ -122,18 +168,15 @@ const LoginForm = () => {
                         sx={{ mt: 2 }}
                         fullWidth
                     >
-                        Login
+                        Create new account
                     </Button>
                 </form>
-                <p>
-                    Lost your password? You can <Link to='/recover-password'>recover here</Link>
-                </p>
                 <p style={{ marginTop: '3rem', textAlign: 'center' }}>
-                    Not a member yet? <Link to='/signup'>Register here</Link>
+                    Already registered? You can <Link to='/login'>login here</Link>
                 </p>
             </Box>
         </Container>
     )
 }
 
-export default LoginForm
+export default RegisterForm
