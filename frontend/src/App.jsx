@@ -5,26 +5,29 @@ import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import RecoverPassword from './pages/auth/RecoverPassword';
 import SimpleHeaderLayout from './layouts/SimpleHeaderLayout';
+import MainLayout from './layouts/MainLayout';
 
 function App() {
 	return (
 		<Routes>
-			<Route
-				path="/"
-				element={
-					<>
-						<h1>Homepage</h1>
-					</>
-				}
-			/>
-			<Route
-				path="/measurements"
-				element={<Measurements />}
-			/>
-			<Route
-				path="/water"
-				element={<Water />}
-			/>
+			<Route path='/' element={<MainLayout />}>
+				<Route
+					index
+					element={
+						<>
+							<h1>Homepage</h1>
+						</>
+					}
+				/>
+				<Route
+					path="/measurements"
+					element={<Measurements />}
+				/>
+				<Route
+					path="/water"
+					element={<Water />}
+				/>
+			</Route>
 
 			{/* Simple header pages */}
 			<Route path='/' element={<SimpleHeaderLayout />}>

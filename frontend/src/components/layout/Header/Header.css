@@ -1,0 +1,17 @@
+.header {
+	position: sticky;
+	padding: 1rem;
+	margin-bottom: 1rem;
+	background-color: var(--neutral-color-100);
+	top: 0;
+	left: 0;
+	z-index: 99999;
+}
+
+.header__container {
+	max-width: var(--max-container-width);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-inline: auto;
+}
