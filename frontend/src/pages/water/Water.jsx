@@ -1,10 +1,8 @@
 import './Water.css';
 import { IoAddCircleOutline } from 'react-icons/io5';
 import Button from '../../components/ui/Button/Button';
-import Tabs from '../../components/ui/Tabs/Tabs';
-import TodayWater from '../../components/Water/TodayWater';
 import AddWater from '../../components/Water/AddWater';
-import AllDaysWater from '../../components/Water/AllDaysWater';
+import { Link, Outlet } from 'react-router-dom';
 
 const Water = () => {
 	return (
@@ -16,21 +14,24 @@ const Water = () => {
 						icon={<IoAddCircleOutline size={18} />}
 						dialogId="add-new-water"
 					/>
+					{/* TODO: Settings button */}
 				</div>
 
-				<Tabs
-					tabs={[
-						{
-							label: 'Today',
-							element: <TodayWater />,
-						},
-						{
-							label: 'All days',
-							element: <AllDaysWater />,
-						},
-						{ label: 'Stats', element: 'Stats element' },
-					]}
-				/>
+				<nav className="water__navigation">
+					<ul>
+						<li>
+							<Link to="/water">Today</Link>
+						</li>
+						<li>
+							<Link to="/water/all">All</Link>
+						</li>
+						<li>
+							<Link to="/water/stats">Stats</Link>
+						</li>
+					</ul>
+				</nav>
+
+				<Outlet />
 			</section>
 
 			<AddWater id="add-new-water" />

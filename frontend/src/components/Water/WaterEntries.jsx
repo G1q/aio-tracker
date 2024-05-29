@@ -4,32 +4,33 @@ import { RiDeleteBin6Line } from 'react-icons/ri';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const AllDaysWater = () => {
-	const [waterEntries, setWaterEntries] = useState([])
+const WaterEntries = () => {
+	const [waterEntries, setWaterEntries] = useState([]);
 
 	useEffect(() => {
-		getWaterEntries()
-	}, [])
+		getWaterEntries();
+	}, []);
 
 	const getWaterEntries = async () => {
 		try {
-			const response = await axios.get(`http://localhost:3005/api/v1/water`)
-			setWaterEntries(response.data)
-
+			const response = await axios.get(
+				`http://localhost:3005/api/v1/water`
+			);
+			setWaterEntries(response.data);
 		} catch (error) {
-			console.log(error)
+			console.log(error);
 		}
-	}
+	};
 
 	const deleteWaterEntry = async (id) => {
-		await axios.delete(`http://localhost:3005/api/v1/water/${id}`)
-		getWaterEntries()
+		await axios.delete(`http://localhost:3005/api/v1/water/${id}`);
+		getWaterEntries();
 	};
 
 	return (
 		<>
-			{
-				waterEntries.length > 0 && <Table headers={['Date', 'Quantity', 'Edit', 'Delete']}>
+			{waterEntries.length > 0 && (
+				<Table headers={['Date', 'Quantity', 'Edit', 'Delete']}>
 					{waterEntries.map((data) => (
 						<tr key={data._id}>
 							<td>{data.date}</td>
@@ -50,11 +51,11 @@ const AllDaysWater = () => {
 						</tr>
 					))}
 				</Table>
-			}
+			)}
 
 			<p>Tips</p>
 		</>
 	);
 };
 
-export default AllDaysWater;
+export default WaterEntries;
