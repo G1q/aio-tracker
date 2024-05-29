@@ -1,0 +1,3 @@
+.water__table :is(th, td) {
+	text-align: center;
+}
