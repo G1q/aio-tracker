@@ -144,7 +144,19 @@ const AddWater = () => {
 					</Box>
 				</DialogContent>
 				<DialogActions>
-					<Button onClick={handleCloseDialog}>Cancel</Button>
+					<Button
+						variant="text"
+						onClick={handleCloseDialog}
+						sx={{
+							position: 'absolute',
+							top: '1rem',
+							right: '0',
+							fontWeight: 700,
+							color: 'crimson',
+						}}
+					>
+						X
+					</Button>
 				</DialogActions>
 			</Dialog>
 		</>
