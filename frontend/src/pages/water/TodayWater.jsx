@@ -1,6 +1,5 @@
 import './Water.css';
 import { RiDeleteBin6Line } from 'react-icons/ri';
-import TodayStats from '../../components/Water/TodayStats';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import {
@@ -32,14 +31,22 @@ const TodayWater = () => {
 	};
 
 	const deleteWaterEntry = async (id) => {
-		await axios.delete(`http://localhost:3005/api/v1/water/${id}`);
-		getWaterEntries();
+		const confirm = window.confirm(
+			'Are you sure you want to delete this entry?'
+		);
+
+		if (!confirm) return;
+
+		try {
+			await axios.delete(`http://localhost:3005/api/v1/water/${id}`);
+			getWaterEntries();
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	return (
 		<>
-			{/* <TodayStats /> */}
-
 			{waterEntries.length > 0 ? (
 				<TableContainer
 					sx={{
