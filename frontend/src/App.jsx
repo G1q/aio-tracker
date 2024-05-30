@@ -6,8 +6,8 @@ import Register from './pages/auth/Register';
 import RecoverPassword from './pages/auth/RecoverPassword';
 import SimpleHeaderLayout from './layouts/SimpleHeaderLayout';
 import MainLayout from './layouts/MainLayout';
-import TodayWater from './components/Water/TodayWater';
-import WaterEntries from './components/Water/WaterEntries';
+import TodayWater from './pages/water/TodayWater';
+import WaterEntries from './pages/water/WaterEntries';
 
 function App() {
 	return (

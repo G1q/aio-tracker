@@ -1,6 +1,6 @@
-import './Water.css';
+// import Table from '../../components/ui/Table/Table';
+// import Button from '../../components/ui/Button/Button';
 import { RiDeleteBin6Line } from 'react-icons/ri';
-import TodayStats from './TodayStats';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import {
@@ -13,7 +13,7 @@ import {
 	Button,
 } from '@mui/material';
 
-const TodayWater = () => {
+const WaterEntries = () => {
 	const [waterEntries, setWaterEntries] = useState([]);
 
 	useEffect(() => {
@@ -31,35 +31,26 @@ const TodayWater = () => {
 		}
 	};
 
-	const deleteWaterEntry = async (id) => {
-		await axios.delete(`http://localhost:3005/api/v1/water/${id}`);
-		getWaterEntries();
-	};
-
 	return (
 		<>
-			{/* <TodayStats /> */}
-
 			{waterEntries.length > 0 ? (
 				<TableContainer
 					sx={{
-						maxWidth: '800px',
+						maxWidth: '500px',
 						marginInline: 'auto',
 						marginTop: '3rem',
 					}}
 				>
 					<Table
-						aria-label="today water entries"
+						aria-label="all water entries"
 						size="small"
 						stickyHeader={true}
 						className="water__table"
 					>
 						<TableHead>
 							<TableRow>
-								<TableCell>Time</TableCell>
+								<TableCell>Date</TableCell>
 								<TableCell>Quantity</TableCell>
-								<TableCell>Edit</TableCell>
-								<TableCell>Delete</TableCell>
 							</TableRow>
 						</TableHead>
 						<TableBody>
@@ -69,25 +60,9 @@ const TodayWater = () => {
 										component="th"
 										scope="row"
 									>
-										{data.time}
+										{data.date}
 									</TableCell>
 									<TableCell>{`${data.quantity} ml`}</TableCell>
-									<TableCell>Edit</TableCell>
-									<TableCell>
-										<Button
-											type="button"
-											variant="text"
-											sx={{
-												color: 'crimson',
-												minWidth: 'min-content',
-											}}
-											onClick={() =>
-												deleteWaterEntry(data._id)
-											}
-										>
-											<RiDeleteBin6Line />
-										</Button>
-									</TableCell>
 								</TableRow>
 							))}
 						</TableBody>
@@ -102,4 +77,4 @@ const TodayWater = () => {
 	);
 };
 
-export default TodayWater;
+export default WaterEntries;
