@@ -43,3 +43,7 @@
 .water__navigation ul li a.active::after {
 	scale: 1;
 }
+
+.water__table :is(th, td) {
+	text-align: center;
+}
