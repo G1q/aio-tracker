@@ -8,69 +8,72 @@ import SimpleHeaderLayout from './layouts/SimpleHeaderLayout';
 import MainLayout from './layouts/MainLayout';
 import TodayWater from './pages/water/TodayWater';
 import WaterEntries from './pages/water/WaterEntries';
+import { AuthProvider } from './contexts/AuthContext';
 
 function App() {
 	return (
-		<Routes>
-			<Route
-				path="/"
-				element={<MainLayout />}
-			>
+		<AuthProvider>
+			<Routes>
 				<Route
-					index
-					element={
-						<>
-							<h1>Homepage</h1>
-						</>
-					}
-				/>
-				<Route
-					path="/measurements"
-					element={<Measurements />}
-				/>
-				<Route
-					path="/water"
-					element={<Water />}
+					path="/"
+					element={<MainLayout />}
 				>
 					<Route
 						index
-						element={<TodayWater />}
+						element={
+							<>
+								<h1>Homepage</h1>
+							</>
+						}
 					/>
 					<Route
-						path="/water/all"
-						element={<WaterEntries />}
+						path="/measurements"
+						element={<Measurements />}
 					/>
 					<Route
-						path="/water/stats"
-						element={<h1>Stats</h1>}
+						path="/water"
+						element={<Water />}
+					>
+						<Route
+							index
+							element={<TodayWater />}
+						/>
+						<Route
+							path="/water/all"
+							element={<WaterEntries />}
+						/>
+						<Route
+							path="/water/stats"
+							element={<h1>Stats</h1>}
+						/>
+					</Route>
+				</Route>
+
+				{/* Simple header pages */}
+				<Route
+					path="/"
+					element={<SimpleHeaderLayout />}
+				>
+					<Route
+						path="/login"
+						element={<Login />}
+					/>
+					<Route
+						path="/signup"
+						element={<Register />}
+					/>
+					<Route
+						path="/recover-password"
+						element={<RecoverPassword />}
 					/>
 				</Route>
-			</Route>
 
-			{/* Simple header pages */}
-			<Route
-				path="/"
-				element={<SimpleHeaderLayout />}
-			>
 				<Route
-					path="/login"
-					element={<Login />}
+					path="*"
+					element={<h1>Page not found</h1>}
 				/>
-				<Route
-					path="/signup"
-					element={<Register />}
-				/>
-				<Route
-					path="/recover-password"
-					element={<RecoverPassword />}
-				/>
-			</Route>
-
-			<Route
-				path="*"
-				element={<h1>Page not found</h1>}
-			/>
-		</Routes>
+			</Routes>
+		</AuthProvider>
 	);
 }
 

@@ -11,8 +11,10 @@ import {
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useAuth } from '../../contexts/AuthContext';
 
 const LoginForm = () => {
+	const { isLoggedIn } = useAuth();
 	const [formData, setFormData] = useState({
 		email: '',
 		password: '',
@@ -61,11 +63,12 @@ const LoginForm = () => {
 		if (errors.email || errors.password) return;
 
 		try {
-			await axios.post(
+			const response = await axios.post(
 				`http://localhost:3005/api/v1/users/login`,
 				formData
 			);
-			navigate('/');
+			localStorage.setItem('token', response.data.token);
+			navigate(0);
 		} catch (error) {
 			console.log(error);
 		}
