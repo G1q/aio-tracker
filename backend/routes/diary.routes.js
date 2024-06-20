@@ -1,8 +1,14 @@
 import express from 'express';
-import { createDiary } from '../controllers/diary.controller.js';
+import {
+	updateWaterEntries,
+	getWaterEntries,
+	deleteWaterEntry,
+} from '../controllers/diary.controller.js';
 
 const router = express.Router();
 
-router.post('/', createDiary);
+router.get('/water/:userId', getWaterEntries);
+router.put('/water/update/:userId', updateWaterEntries);
+router.put('/water/delete/:userId', deleteWaterEntry);
 
 export default router;

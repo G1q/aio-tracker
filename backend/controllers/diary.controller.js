@@ -1,16 +1,5 @@
 import { Diary } from '../models/diary.model.js';
 
-export const createDiary = async (req, res) => {
-	try {
-		const { userId } = req.body;
-		const newDiary = new Diary({ user: userId });
-		const savedDiary = await newDiary.save();
-		res.status(201).json(savedDiary);
-	} catch (error) {
-		res.status(500).json({ error: error.message });
-	}
-};
-
 export const getAllWaterMeasurements = async (req, res) => {
 	try {
 		const waterMeasurementEntries = await WaterMeasurement.find();
@@ -20,43 +9,50 @@ export const getAllWaterMeasurements = async (req, res) => {
 	}
 };
 
-export const getWaterMeasurement = async (req, res) => {
+export const getWaterEntries = async (req, res) => {
 	try {
-		const category = await WaterMeasurement.findById(req.params.id);
-		if (!category) {
-			return res.status(404).json({ error: 'Category not found' });
+		const userDiary = await Diary.findOne({
+			user: req.params.userId,
+		});
+
+		if (!userDiary) {
+			return res.status(404).json({ error: 'No diary found!' });
 		}
-		res.status(200).json(category);
+
+		res.status(200).json(userDiary.water.sort((a, b) => b.date - a.date));
 	} catch (error) {
 		res.status(500).json({ error: error.message });
 	}
 };
 
-export const updateWaterMeasurement = async (req, res) => {
+export const updateWaterEntries = async (req, res) => {
 	try {
-		const updatedCategory = await WaterMeasurement.findByIdAndUpdate(
-			req.params.id,
-			req.body,
-			{ new: true }
-		);
-		if (!updatedCategory) {
-			return res.status(404).json({ error: 'Category not found' });
-		}
-		res.status(200).json(updatedCategory);
+		const diary = await Diary.findOne({ user: req.params.userId });
+
+		if (!diary) return res.status(404).json({ error: 'No diary found!' });
+
+		const waterEntries = [...diary.water, req.body];
+
+		const updatedDiary = await Diary.findByIdAndUpdate(diary._id, {
+			water: waterEntries,
+		});
+
+		res.status(200).json(updatedDiary);
 	} catch (error) {
 		res.status(500).json({ error: error.message });
 	}
 };
 
-export const deleteWaterMeasurement = async (req, res) => {
+export const deleteWaterEntry = async (req, res) => {
 	try {
-		const deleteWaterEntry = await WaterMeasurement.findByIdAndDelete(
-			req.params.id
+		const diary = await Diary.findOneAndUpdate(
+			{ user: req.params.userId },
+			req.body
 		);
-		if (!deleteWaterEntry) {
-			return res.status(404).json({ error: 'Entry not found' });
-		}
-		res.status(200).json({ message: 'Entry deleted' });
+
+		if (!diary) return res.status(404).json({ error: 'No diary found!' });
+
+		res.status(200).json({ message: 'Entry deleted successfully!' });
 	} catch (error) {
 		res.status(500).json({ error: error.message });
 	}

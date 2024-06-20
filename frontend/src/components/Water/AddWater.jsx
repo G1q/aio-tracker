@@ -16,10 +16,12 @@ import {
 	TimePicker,
 } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
-import { format, getHours, getMinutes } from 'date-fns';
+import { getHours, getMinutes } from 'date-fns';
 import { enGB } from 'date-fns/locale';
+import { useAuth } from '../../contexts/AuthContext';
 
 const AddWater = () => {
+	const { getUserId } = useAuth();
 	const [openDialog, setOpenDialog] = useState(false);
 	const [formData, setFormData] = useState({
 		date: new Date(),
@@ -28,18 +30,22 @@ const AddWater = () => {
 		unit: '',
 	});
 
+	const userId = getUserId();
+
 	const sendForm = async (e) => {
 		e.preventDefault();
 
-		await axios.post(`http://localhost:3005/api/v1/water`, {
-			...formData,
-			date: format(formData.date, 'dd-MM-yyyy'),
-			time: `${getHours(formData.time)
-				.toString()
-				.padStart(2, 0)}:${getMinutes(formData.time)
-				.toString()
-				.padStart(2, 0)}`,
-		}); // TODO: get user id
+		await axios.put(
+			`http://localhost:3005/api/v1/diary/water/update/${userId}`,
+			{
+				...formData,
+				time: `${getHours(formData.time)
+					.toString()
+					.padStart(2, 0)}:${getMinutes(formData.time)
+					.toString()
+					.padStart(2, 0)}`,
+			}
+		);
 
 		// Reset fields
 
