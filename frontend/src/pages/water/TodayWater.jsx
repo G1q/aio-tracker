@@ -11,18 +11,22 @@ import {
 	TableRow,
 	Button,
 } from '@mui/material';
+import { useAuth } from '../../contexts/AuthContext';
 
 const TodayWater = () => {
+	const { getUserId } = useAuth();
 	const [waterEntries, setWaterEntries] = useState([]);
 
 	useEffect(() => {
 		getWaterEntries();
 	}, []);
 
+	const userId = getUserId();
+
 	const getWaterEntries = async () => {
 		try {
 			const response = await axios.get(
-				`http://localhost:3005/api/v1/water`
+				`http://localhost:3005/api/v1/diary/water/${userId}`
 			);
 			setWaterEntries(response.data);
 		} catch (error) {
@@ -37,8 +41,15 @@ const TodayWater = () => {
 
 		if (!confirm) return;
 
+		const newWaterEntries = waterEntries.filter(
+			(entry) => entry._id !== id
+		);
+
 		try {
-			await axios.delete(`http://localhost:3005/api/v1/water/${id}`);
+			await axios.put(
+				`http://localhost:3005/api/v1/diary/water/delete/${userId}`,
+				{ water: newWaterEntries }
+			);
 			getWaterEntries();
 		} catch (error) {
 			console.log(error);
