@@ -101,8 +101,6 @@ const TodayWater = () => {
 			) : (
 				<p style={{ textAlign: 'center' }}>No data entries</p>
 			)}
-
-			<p>Tips</p>
 		</>
 	);
 };

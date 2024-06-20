@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { User } from '../models/user.model.js';
+import { Diary } from '../models/diary.model.js';
 
 export const createUser = async (req, res) => {
 	try {
@@ -29,8 +30,12 @@ export const createUser = async (req, res) => {
 			email,
 			password: hashedPassword,
 		});
-
 		await newUser.save();
+
+		// Create a diary for this user
+		const newDiary = new Diary({ user: newUser._id });
+		await newDiary.save();
+
 		res.status(201).json({ message: 'User created successfully!' });
 	} catch (error) {
 		res.status(500).json({ error: error.message });
