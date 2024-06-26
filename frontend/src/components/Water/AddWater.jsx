@@ -16,7 +16,7 @@ import {
 	TimePicker,
 } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
-import { getHours, getMinutes } from 'date-fns';
+import { getHours, getMinutes, format } from 'date-fns';
 import { enGB } from 'date-fns/locale';
 import { useAuth } from '../../contexts/AuthContext';
 
@@ -39,6 +39,7 @@ const AddWater = () => {
 			`http://localhost:3005/api/v1/diary/water/update/${userId}`,
 			{
 				...formData,
+				date: format(new Date(formData.date), 'dd-MM-yyyy'),
 				time: `${getHours(formData.time)
 					.toString()
 					.padStart(2, 0)}:${getMinutes(formData.time)

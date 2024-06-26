@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import { Diary } from '../models/diary.model.js';
 
 export const getAllWaterMeasurements = async (req, res) => {
@@ -55,5 +56,38 @@ export const deleteWaterEntry = async (req, res) => {
 		res.status(200).json({ message: 'Entry deleted successfully!' });
 	} catch (error) {
 		res.status(500).json({ error: error.message });
+	}
+};
+
+export const getWaterEntriesByDate = async (req, res) => {
+	const userId = req.params.userId;
+
+	if (!userId) {
+		return res.status(404).send('User ID not found!');
+	}
+
+	try {
+		const groupedEntries = await Diary.aggregate([
+			{ $match: { user: new mongoose.Types.ObjectId(userId) } },
+			{ $unwind: '$water' },
+			{
+				$group: {
+					_id: '$water.date',
+					totalQuantity: { $sum: '$water.quantity' },
+				},
+			},
+			{
+				$project: {
+					_id: 0,
+					date: '$_id',
+					totalQuantity: 1,
+				},
+			},
+			{ $sort: { date: -1 } },
+		]);
+
+		res.status(200).json(groupedEntries);
+	} catch (error) {
+		console.error('Error aggregating water consumption:', error);
 	}
 };

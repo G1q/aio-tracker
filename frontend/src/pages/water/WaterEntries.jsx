@@ -1,6 +1,3 @@
-// import Table from '../../components/ui/Table/Table';
-// import Button from '../../components/ui/Button/Button';
-import { RiDeleteBin6Line } from 'react-icons/ri';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import {
@@ -10,20 +7,24 @@ import {
 	TableContainer,
 	TableHead,
 	TableRow,
-	Button,
 } from '@mui/material';
+import { useAuth } from '../../contexts/AuthContext';
 
 const WaterEntries = () => {
+	const { getUserId } = useAuth();
 	const [waterEntries, setWaterEntries] = useState([]);
 
 	useEffect(() => {
 		getWaterEntries();
+		console.log(waterEntries);
 	}, []);
+
+	const userId = getUserId();
 
 	const getWaterEntries = async () => {
 		try {
 			const response = await axios.get(
-				`http://localhost:3005/api/v1/water`
+				`http://localhost:3005/api/v1/diary/water/grouped/${userId}`
 			);
 			setWaterEntries(response.data);
 		} catch (error) {
@@ -54,15 +55,15 @@ const WaterEntries = () => {
 							</TableRow>
 						</TableHead>
 						<TableBody>
-							{waterEntries.map((data) => (
-								<TableRow key={data._id}>
+							{waterEntries.map((entry) => (
+								<TableRow key={entry.date}>
 									<TableCell
 										component="th"
 										scope="row"
 									>
-										{data.date}
+										{entry.date}
 									</TableCell>
-									<TableCell>{`${data.quantity} ml`}</TableCell>
+									<TableCell>{`${entry.totalQuantity} ml`}</TableCell>
 								</TableRow>
 							))}
 						</TableBody>
