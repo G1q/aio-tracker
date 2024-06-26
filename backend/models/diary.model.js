@@ -9,7 +9,7 @@ const diarySchema = new mongoose.Schema(
 		water: [
 			{
 				quantity: Number,
-				date: Date,
+				date: String,
 				time: String,
 			},
 		],
